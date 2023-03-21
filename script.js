@@ -44,7 +44,7 @@ function disableButton() {
 function enableButton() {
   generateButton.disabled = false;
   generateButton.style.opacity = 1;
-  generateButton.innerHTML = 'Кто сегодня Ваня';
+  generateButton.innerHTML = 'Кто сегодня Венде';
 }
 
 function savePhrase(phrase) {
@@ -55,15 +55,61 @@ function savePhrase(phrase) {
     return localStorage.getItem('phrase');
   }
 
-  generateButton.addEventListener('click', function () {
-  const phrases = ['казел', 'казлина', 'говнюк', "пидарас", "тварь", "дерьмоед", "уебан", "тупень", "эммм", "норм чел", "влагалище", "уебанище", "пидорасина", "не сдох", "сдох"];
-  const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
-  const heading = document.querySelector('h1');
-  heading.innerHTML = `Ваня сегодня ${randomPhrase}`;
-  animateText(heading);
-  disableButton();
-  savePhrase(heading.innerHTML);
+  function changeBackgroundImage() {
+    document.body.style.backgroundImage = "url('https://i.ibb.co/qr5TQT9/photo-2022-02-17-20-35-03-2.jpg')";
+  }
+
+  function showNotification() {
+    const notification = document.createElement('div');
+    notification.classList.add('notification');
+    notification.textContent = 'Ты че, подождать не можешь?';
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+      notification.classList.add('show');
+    }, 50);
+
+    setTimeout(() => {
+      notification.classList.remove('show');
+      setTimeout(() => {
+        document.body.removeChild(notification);
+      }, 500);
+    }, 3000);
+  }
+
+  generateButton.addEventListener('pointerdown', function (event) {
+    if (generateButton.disabled) {
+      showNotification();
+    } else {
+    const phrases = ['казел', 'казлина', 'говнюк', 'пидарас', 'пидарасина', 'говноед', 'хуеглот', 'еще не сдох к сожалению', 'сдох наконец то', 'уебан', 'уебище', 'тварь', 'полное чмо'];
+    const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+    const heading = document.querySelector('h1');
+    heading.innerHTML = `Венде сегодня ${randomPhrase}`;
+    animateText(heading);
+    disableButton();
+    savePhrase(heading.innerHTML);
+    changeBackgroundImage();
+  }
 });
+
+function handleClick(event) {
+    if (generateButton.disabled) {
+      showNotification();
+    } else {
+        const phrases = ['казел', 'казлина', 'говнюк', 'пидарас', 'пидарасина', 'говноед', 'хуеглот', 'еще не сдох к сожалению', 'сдох наконец то', 'уебан', 'уебище', 'тварь', 'полное чмо'];
+        const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+      const heading = document.querySelector('h1');
+      heading.innerHTML = `Венде сегодня ${randomPhrase}`;
+      animateText(heading);
+      disableButton();
+      savePhrase(heading.innerHTML);
+      changeBackgroundImage();
+    }
+  }
+
+  generateButton.addEventListener('touchstart', handleClick);
+  generateButton.addEventListener('mousedown', handleClick);
+
 
 document.addEventListener('DOMContentLoaded', function () {
   const nextClickTime = localStorage.getItem('nextClickTime');
