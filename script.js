@@ -47,18 +47,33 @@ function enableButton() {
   generateButton.innerHTML = 'Кто сегодня Ваня';
 }
 
-generateButton.addEventListener('click', function () {
+function savePhrase(phrase) {
+    localStorage.setItem('phrase', phrase);
+  }
+
+  function getSavedPhrase() {
+    return localStorage.getItem('phrase');
+  }
+
+  generateButton.addEventListener('click', function () {
   const phrases = ['казел', 'казлина', 'говнюк', "пидарас", "тварь", "дерьмоед", "уебан", "тупень", "эммм", "норм чел", "влагалище", "уебанище", "пидорасина", "не сдох", "сдох"];
   const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
   const heading = document.querySelector('h1');
   heading.innerHTML = `Ваня сегодня ${randomPhrase}`;
   animateText(heading);
   disableButton();
+  savePhrase(heading.innerHTML);
 });
 
 document.addEventListener('DOMContentLoaded', function () {
   const nextClickTime = localStorage.getItem('nextClickTime');
   const now = new Date().getTime();
+  const savedPhrase = getSavedPhrase();
+  const heading = document.querySelector('h1');
+
+  if (savedPhrase) {
+    heading.innerHTML = savedPhrase;
+  }
 
   if (!nextClickTime || now >= parseInt(nextClickTime, 10)) {
     enableButton();
