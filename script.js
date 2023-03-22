@@ -44,7 +44,7 @@ function disableButton() {
 function enableButton() {
   generateButton.disabled = false;
   generateButton.style.opacity = 1;
-  generateButton.innerHTML = 'Кто сегодня Венде';
+  generateButton.innerHTML = 'Кто сегодня Ваня';
 }
 
 function savePhrase(phrase) {
@@ -84,7 +84,7 @@ function savePhrase(phrase) {
     const phrases = ['казел', 'казлина', 'говнюк', 'пидарас', 'пидарасина', 'говноед', 'хуеглот', 'еще не сдох к сожалению', 'сдох наконец то', 'уебан', 'уебище', 'тварь', 'полное чмо'];
     const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
     const heading = document.querySelector('h1');
-    heading.innerHTML = `Венде сегодня ${randomPhrase}`;
+    heading.innerHTML = `Ваня сегодня ${randomPhrase}`;
     animateText(heading);
     disableButton();
     savePhrase(heading.innerHTML);
@@ -99,7 +99,7 @@ function handleClick(event) {
         const phrases = ['казел', 'казлина', 'говнюк', 'пидарас', 'пидарасина', 'говноед', 'хуеглот', 'еще не сдох к сожалению', 'сдох наконец то', 'уебан', 'уебище', 'тварь', 'полное чмо'];
         const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
       const heading = document.querySelector('h1');
-      heading.innerHTML = `Венде сегодня ${randomPhrase}`;
+      heading.innerHTML = `Ваня сегодня ${randomPhrase}`;
       animateText(heading);
       disableButton();
       savePhrase(heading.innerHTML);
